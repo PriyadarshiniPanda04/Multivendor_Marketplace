@@ -21,11 +21,11 @@ export const getStripeConfig = async () => {
 };
 
 /**
- * Create PaymentIntent on backend
+ * Process Test Card Payment directly via Stripe Secret Key on Backend
  */
-export const createPaymentIntent = async ({ amount, currency = 'inr', orderId, customerName, customerEmail }) => {
+export const processTestCardPayment = async ({ amount, currency = 'inr', orderId, customerName, customerEmail }) => {
   try {
-    const res = await axios.post(`${API_BASE}/payment/create-payment-intent`, {
+    const res = await axios.post(`${API_BASE}/payment/process-test-payment`, {
       amount,
       currency,
       orderId,
@@ -34,7 +34,7 @@ export const createPaymentIntent = async ({ amount, currency = 'inr', orderId, c
     });
     return res.data;
   } catch (err) {
-    console.error('Error creating payment intent:', err.response?.data || err.message);
+    console.error('Error processing Stripe test payment:', err.response?.data || err.message);
     throw err.response?.data || err;
   }
 };

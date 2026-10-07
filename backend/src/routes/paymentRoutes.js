@@ -3,14 +3,18 @@ const router = express.Router();
 const {
   getStripeConfig,
   createPaymentIntent,
+  processTestPayment,
   handleWebhook,
   getRazorpayConfig,
   createRazorpayOrder,
   verifyRazorpayPayment
 } = require('../controllers/paymentController');
 
-// Retrieve Stripe Publishable Key
+// Retrieve Stripe status
 router.get('/config', getStripeConfig);
+
+// Process Test Card Payment directly via Stripe Secret Key
+router.post('/process-test-payment', processTestPayment);
 
 // Create Stripe PaymentIntent
 router.post('/create-payment-intent', createPaymentIntent);
