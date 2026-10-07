@@ -53,6 +53,27 @@ const vendorsData = [
 
 const sampleProducts = [
   {
+    name: '₹1 Flash Deal - Special Promo & Gateway Test Sample',
+    slug: 'one-rupee-test-product',
+    description: 'Special ₹1 promotional product. Perfect for testing seamless checkout, Stripe and Razorpay payment authorization, invoices, and automated order confirmations.',
+    categorySlug: 'electronics-audio',
+    vendorSlug: 'soundcraft-audio',
+    price: 99.00,
+    discountPrice: 1.00,
+    countInStock: 999,
+    sku: 'ONE-RUPEE-TEST-01',
+    isFeatured: true,
+    ratingsAverage: 5.0,
+    ratingsQuantity: 250,
+    images: [
+      { url: 'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&auto=format&fit=crop&q=80', isPrimary: true }
+    ],
+    attributes: [
+      { name: 'Special Deal', value: '₹1 Promotional Price' },
+      { name: 'Testing', value: 'Gateway & Checkout Compatible' }
+    ]
+  },
+  {
     name: 'AeroWave Pro Active Noise Cancelling Wireless Headphones',
     slug: 'aerowave-pro-anc-wireless-headphones',
     description: 'Engineered for audio purists. Features 40mm titanium drivers, 45-hour battery reserve, active spatial sound, and ultra-plush protein leather earcups.',

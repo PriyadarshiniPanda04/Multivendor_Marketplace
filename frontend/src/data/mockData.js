@@ -165,6 +165,46 @@ export const SELLERS = [
 ];
 
 export const PRODUCTS = [
+  // Special ₹1 Promotional / Gateway Test Product
+  {
+    id: 'prod-one-rupee',
+    name: '₹1 Flash Deal - Special Promo & Gateway Test Sample',
+    slug: 'one-rupee-test-product',
+    category: 'electronics',
+    subcategory: 'Accessories',
+    brand: 'BazaarHub Exclusive',
+    price: 1,
+    originalPrice: 99,
+    discount: 99,
+    rating: 4.9,
+    reviewCount: 1540,
+    images: [
+      'https://images.unsplash.com/photo-1572635196237-14b3f281503f?w=800&auto=format&fit=crop&q=80',
+      'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=800&auto=format&fit=crop&q=80'
+    ],
+    sellerId: 's-1',
+    sellerName: 'TechWorld Store',
+    stock: 999,
+    isDealOfDay: true,
+    isBestSeller: true,
+    isFlashSale: true,
+    claimedPercentage: 94,
+    freeDelivery: true,
+    description: 'Special ₹1 promotional product. Perfect for testing seamless checkout, Stripe and Razorpay payment authorization, invoices, and automated order confirmations.',
+    features: [
+      '₹1 Special Flash Deal Promotional Price',
+      'Fully compatible with live and test payment gateways (Stripe & Razorpay)',
+      'Instant digital tax invoice generation on purchase',
+      'Free express dispatch with order tracking'
+    ],
+    specifications: {
+      'Deal Price': '₹1 Only',
+      'Promotional Discount': '99% OFF',
+      'Delivery': 'Free Delivery',
+      'Return Window': '7 Days Returnable',
+      'Warranty': '1 Year Standard Warranty'
+    }
+  },
   // 1-8: Electronics & Audio
   {
     id: 'prod-1',
