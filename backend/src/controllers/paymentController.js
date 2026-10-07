@@ -50,6 +50,7 @@ const getStripeConfig = async (req, res) => {
       secretKey.startsWith('sk_test_')
     );
 
+    console.log(`⚙️ [STRIPE] Client requested status -> Connected: ${isConnected} (mode: test_key_integrated)`);
     res.status(200).json({
       success: true,
       isConnected,
@@ -57,6 +58,7 @@ const getStripeConfig = async (req, res) => {
       message: 'Stripe Test Secret Key integrated and active.'
     });
   } catch (error) {
+    console.error('❌ [STRIPE] Config error:', error.message);
     res.status(500).json({
       success: false,
       message: 'Failed to retrieve Stripe configuration',
@@ -84,6 +86,12 @@ const processTestPayment = async (req, res) => {
     const stripeClient = getStripeInstance();
     const amountInSubunits = Math.round(amount * 100);
 
+    console.log('\n💳 ================== STRIPE PAYMENT INITIATED ==================');
+    console.log(`💰 Amount: ₹${amount.toLocaleString('en-IN')} (${amountInSubunits} paise)`);
+    console.log(`👤 Customer: ${customerName || 'Guest'} (${customerEmail || 'no-email'})`);
+    console.log(`📦 Order: ${orderId || 'ORD-NEW'}`);
+    console.log(`🔑 Stripe Client: ${stripeClient ? 'sk_test_... (Connected)' : 'Fallback Simulator'}`);
+
     if (stripeClient) {
       // Execute real test PaymentIntent using Stripe's official test method
       const paymentIntent = await stripeClient.paymentIntents.create({
@@ -100,6 +108,11 @@ const processTestPayment = async (req, res) => {
         }
       });
 
+      console.log(`✅ [STRIPE SERVER HIT SUCCESS!]`);
+      console.log(`🎯 Stripe PaymentIntent ID: ${paymentIntent.id}`);
+      console.log(`📊 Stripe Transaction Status: ${paymentIntent.status}`);
+      console.log('💳 =============================================================\n');
+
       return res.status(200).json({
         success: true,
         id: paymentIntent.id,
@@ -110,6 +123,8 @@ const processTestPayment = async (req, res) => {
       });
     } else {
       const mockId = `pi_test_${Date.now()}`;
+      console.log(`⚠️ Mock Fallback ID: ${mockId}`);
+      console.log('💳 =============================================================\n');
       return res.status(200).json({
         success: true,
         id: mockId,
@@ -120,7 +135,7 @@ const processTestPayment = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error('Stripe Process Test Payment Error:', error.message);
+    console.error('❌ [STRIPE ERROR]:', error.message);
     res.status(500).json({
       success: false,
       message: error.message || 'Error processing Stripe test payment'
